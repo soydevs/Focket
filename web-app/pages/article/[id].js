@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
-import { IconButton } from "@mui/material";
+import Chips from "react-chips";
 // const read = require("node-readability"); // todo: make this into an api which can be called
 
 import CleanedPage from "../../components/CleanedPage";
@@ -48,15 +48,18 @@ const Article = ({ article, content }) => {
         <title>Focket - {title}</title>
       </Head>
       <h1>{title}</h1>
-      <p>
-        <b>Added On: </b>
-        {new Date(addedTime).toLocaleString()}
-      </p>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <b style={{ marginRight: 10 }}>Tags: </b>
+        <Chips
+          value={tags}
+          onChange={(val) => handleUpdateArticle("tags", val)}
+        />
+      </div>
 
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <span>
-          <b>Tags: </b>
-          <TagsList tags={tags} />
+          <b>Added On: </b>
+          {new Date(addedTime).toLocaleString()}
         </span>
         <br />
         <button onClick={() => setNotesTabOpen((curr) => !curr)}>

@@ -15,7 +15,6 @@ const NotesTab = ({ notesList = [], handleUpdateArticle }) => {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
     setNotes((currNotes) => currNotes.filter((note) => note.id !== id));
     handleUpdateArticle("notes", notes);
   };

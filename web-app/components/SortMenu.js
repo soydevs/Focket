@@ -7,11 +7,12 @@ import { useState } from "react";
 const SortMenu = ({ setSortKey }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleClick = (key) => () => {
+    setSortKey(key);
+    handleClose();
   };
 
   return (
@@ -21,7 +22,7 @@ const SortMenu = ({ setSortKey }) => {
         aria-controls='basic-menu'
         aria-haspopup='true'
         aria-expanded={open ? "true" : undefined}
-        onClick={handleClick}
+        onClick={(e) => setAnchorEl(e.currentTarget)}
         style={{ position: "relative", bottom: 7 }}
       >
         <SortIcon />
@@ -35,11 +36,9 @@ const SortMenu = ({ setSortKey }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => setSortKey("old")}>Oldest First</MenuItem>
-        <MenuItem onClick={() => setSortKey("new")}>Newest First </MenuItem>
-        <MenuItem onClick={() => setSortKey("alph")}>
-          Alphabetical Order
-        </MenuItem>
+        <MenuItem onClick={handleClick("old")}>Oldest First</MenuItem>
+        <MenuItem onClick={handleClick("new")}>Newest First </MenuItem>
+        <MenuItem onClick={handleClick("alph")}>Alphabetical Order</MenuItem>
       </Menu>
     </div>
   );
