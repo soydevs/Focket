@@ -10,3 +10,24 @@ export const getUniqueTagsFromArticles = (articles) => {
   }
   return tags;
 };
+
+export const handleSort = (key = "", articles = []) => {
+  let params;
+  let asc = true;
+  switch (key) {
+    case "alph":
+      params = "title";
+      break;
+    case "new":
+      params = "addedTime";
+      break;
+    case "old":
+      params = "addedTime";
+      asc = false;
+      break;
+  }
+  articles.sort((a, b) => {
+    return asc ? a[params] < b[params] : a[params] > b[params];
+  });
+  return articles;
+};

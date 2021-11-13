@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+import Chips from "react-chips";
 // const read = require("node-readability"); // todo: make this into an api which can be called
 
 import CleanedPage from "../../components/CleanedPage";
@@ -34,21 +35,31 @@ export const getStaticPaths = () => {
 const Article = ({ article, content }) => {
   const [notesTabOpen, setNotesTabOpen] = useState(true);
   const { title, addedTime, tags, url, notes } = article;
+
+  const handleUpdateArticle = (key, val) => {
+    const updatedArticle = { ...article, [key]: val };
+    console.log(updatedArticle);
+    // axios.put(...)
+  };
+
   return (
     <div style={{ minHeight: "100vh", padding: 5 }}>
       <Head>
         <title>Focket - {title}</title>
       </Head>
       <h1>{title}</h1>
-      <p>
-        <b>Added On: </b>
-        {new Date(addedTime).toLocaleString()}
-      </p>
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <b style={{ marginRight: 10 }}>Tags: </b>
+        <Chips
+          value={tags}
+          onChange={(val) => handleUpdateArticle("tags", val)}
+        />
+      </div>
 
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <span>
-          <b>Tags: </b>
-          <TagsList tags={tags} />
+          <b>Added On: </b>
+          {new Date(addedTime).toLocaleString()}
         </span>
         <br />
         <button onClick={() => setNotesTabOpen((curr) => !curr)}>
@@ -64,7 +75,10 @@ const Article = ({ article, content }) => {
         </div>
         {notesTabOpen && (
           <div style={{ flex: 1 }}>
-            <NotesTab notesList={notes} />
+            <NotesTab
+              notesList={notes}
+              handleUpdateArticle={handleUpdateArticle}
+            />
           </div>
         )}
       </div>

@@ -3,14 +3,14 @@ const sampleNotes = [
     id: "1",
     text: "Lorem ipsum dolor, maiores voluptates, aliquid quam, itaque rerum aspernatur qui dicta iure temporibus mollitia praesentium ab a. Rem quam similique voluptas labore obcaecati!",
     color: "green",
-    addedTime: 1636796938535,
+    addedTime: 1636796938532,
   },
 
   {
     id: "2",
     text: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam maiores voluptates, aliquid quam, itaque rerum aspernatur qui dicta iure temporibus mollitia praesentium ab a. Rem quam similique voluptas labore obcaecati!",
     color: "yellow",
-    addedTime: 1636796938535,
+    addedTime: 1636796938537,
   },
   {
     id: "3",

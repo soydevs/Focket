@@ -4,11 +4,13 @@ import ArticleList from "../components/ArticleList";
 import TagsList from "../components/TagsList";
 import SearchBar from "../components/SearchBar";
 import { tempArticles } from "../tempData";
-import { getUniqueTagsFromArticles } from "../utils/utils";
+import { getUniqueTagsFromArticles, handleSort } from "../utils/utils";
+import SortMenu from "./SortMenu";
 
 const Main = () => {
   const [articles, setArticles] = useState(tempArticles);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortKey, setSortKey] = useState("");
 
   useEffect(() => {
     if (!searchQuery) {
@@ -48,12 +50,15 @@ const Main = () => {
     >
       <h1>Focket</h1>
       <p>Your Personal and Private Knowledge Management Library</p>
-      <SearchBar searchValue={searchQuery} handleSearch={setSearchQuery} />
+      <div style={{ display: "flex" }}>
+        <SearchBar searchValue={searchQuery} handleSearch={setSearchQuery} />
+        <SortMenu setSortKey={setSortKey} />
+      </div>
       <TagsList
         tags={getUniqueTagsFromArticles(tempArticles)}
         clickHandler={handleTagClick}
       />
-      <ArticleList articles={articles} />
+      <ArticleList articles={handleSort(sortKey, articles)} />
     </div>
   );
 };

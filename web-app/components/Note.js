@@ -3,16 +3,13 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { IconButton } from "@mui/material";
 
-const Note = ({ note }) => {
+const Note = ({ note, handleDelete, handleSave }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedVal, setEditedVal] = useState(note.text);
 
-  const handleSave = () => {
+  const saveNote = () => {
+    handleSave({ ...note, text: editedVal });
     setIsEditing(false);
-    console.log(editedVal);
-  };
-  const handleDelete = () => {
-    console.log("deleting note: " + note.id);
   };
 
   return (
@@ -24,7 +21,7 @@ const Note = ({ note }) => {
             <IconButton onClick={() => setIsEditing(true)}>
               <ModeEditIcon fontSize='small' />
             </IconButton>
-            <IconButton onClick={handleDelete}>
+            <IconButton onClick={() => handleDelete(note.id)}>
               <DeleteOutlineIcon fontSize='small' />
             </IconButton>
           </span>
@@ -40,7 +37,7 @@ const Note = ({ note }) => {
             onChange={(e) => setEditedVal(e.target.value)}
           />
           <div style={{ display: "flex" }}>
-            <button onClick={handleSave}>Save</button>
+            <button onClick={saveNote}>Save</button>
             <button onClick={() => setIsEditing(false)}>Cancel</button>
           </div>
         </div>

@@ -33,7 +33,7 @@ const CleanedPage = ({ url, content }) => {
         </div>
       ) : (
         <div style={{ display: "flex", height: "70vh" }}>
-          <iframe style={{ flex: 1 }} src={url} frameborder='0' />
+          <iframe style={{ flex: 1 }} src={url} frameBorder='0' />
         </div>
       )}
     </div>
