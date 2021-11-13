@@ -25,7 +25,7 @@ export const tempArticles = [
     id: "1",
     url: "https://github.com/soydevs/Focket/projects/1",
     addedTime: 1636796938535,
-    title: "Soydevs-Focket-actions",
+    title: "Soydevs-Focket",
     description:
       " Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque nulla molestiae nobis ut quaerat minima totam ducimus at beatae dolore rem temporibus, recusandae vero dignissimos, ipsum quis aspernatur vel saepe!",
     tags: ["test"],

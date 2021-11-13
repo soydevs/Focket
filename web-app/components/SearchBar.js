@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-
-const SearchBar = ({ handleSearch = () => {} }) => {
-  const [query, setQuery] = useState("");
-
-  useEffect(() => {
-    handleSearch(query);
-  }, [query]);
-
+const SearchBar = ({ searchValue, handleSearch = () => {} }) => {
   return (
     <div>
       <input
         type='text'
-        value={query}
+        value={searchValue}
         placeholder='Search articles'
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={(e) => handleSearch(e.target.value)}
       />
+      <button
+        disabled={!searchValue}
+        onClick={() => handleSearch("")}
+        className='btn'
+      >
+        Clear
+      </button>
     </div>
   );
 };

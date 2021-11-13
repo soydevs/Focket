@@ -1,27 +1,8 @@
 import Head from "next/head";
-import { useState } from "react";
-import ArticleList from "../components/ArticleList";
-import SearchBar from "../components/SearchBar";
+import Main from "../components/Main";
 import styles from "../styles/Home.module.css";
-import { tempArticles } from "../tempData";
 
 export default function Home() {
-  const [articles, setArticles] = useState(tempArticles);
-
-  const handleSearch = (query = "") => {
-    if (query) {
-      const filteredArticles = tempArticles.filter(
-        (el) =>
-          el.url.toLowerCase().includes(query.toLowerCase()) ||
-          el.title.toLowerCase().includes(query.toLowerCase())
-      );
-      setArticles(filteredArticles);
-      return;
-    }
-    setArticles(tempArticles);
-  };
-
-  if (typeof window == "undefined") return null;
   return (
     <div className={styles.container}>
       <Head>
@@ -40,16 +21,14 @@ export default function Home() {
           href='https://fonts.googleapis.com/icon?family=Material+Icons'
         />
       </Head>
+      <Main />
 
-      <SearchBar handleSearch={handleSearch} />
-      <ArticleList articles={articles} />
-
-      <footer className={styles.footer}>
+      <footer>
         <a
           href='https://github.com/soydevs/Focket'
           target='_blank'
           rel='noopener noreferrer'
-          style={{ color: "blue" }}
+          style={{ color: "blue", marginBottom: 5 }}
         >
           Visit source Code
         </a>
