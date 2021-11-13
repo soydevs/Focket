@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+import { IconButton } from "@mui/material";
 // const read = require("node-readability"); // todo: make this into an api which can be called
 
 import CleanedPage from "../../components/CleanedPage";
@@ -34,6 +35,13 @@ export const getStaticPaths = () => {
 const Article = ({ article, content }) => {
   const [notesTabOpen, setNotesTabOpen] = useState(true);
   const { title, addedTime, tags, url, notes } = article;
+
+  const handleUpdateArticle = (key, val) => {
+    const updatedArticle = { ...article, [key]: val };
+    console.log(updatedArticle);
+    // axios.put(...)
+  };
+
   return (
     <div style={{ minHeight: "100vh", padding: 5 }}>
       <Head>
@@ -64,7 +72,10 @@ const Article = ({ article, content }) => {
         </div>
         {notesTabOpen && (
           <div style={{ flex: 1 }}>
-            <NotesTab notesList={notes} />
+            <NotesTab
+              notesList={notes}
+              handleUpdateArticle={handleUpdateArticle}
+            />
           </div>
         )}
       </div>
