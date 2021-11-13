@@ -1,8 +1,13 @@
 import Head from "next/head";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Main from "../components/Main";
 import styles from "../styles/Home.module.css";
+import useIsLoggedIn from "../hooks/useIsLoggedIn";
 
 export default function Home() {
+  const { isUserLoggedIn } = useIsLoggedIn();
+  console.log({ isUserLoggedIn });
   return (
     <div className={styles.container}>
       <Head>
@@ -22,7 +27,7 @@ export default function Home() {
         />
       </Head>
       <Main />
-
+      <ToastContainer />
       <footer>
         <a
           href='https://github.com/soydevs/Focket'

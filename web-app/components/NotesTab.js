@@ -11,7 +11,6 @@ const NotesTab = ({ notesList = [], handleUpdateArticle }) => {
       ...notes,
       { id: Math.random(), text: "", addedTime: new Date().getTime() },
     ]);
-    handleUpdateArticle("notes", notes);
   };
 
   const handleDelete = (id) => {

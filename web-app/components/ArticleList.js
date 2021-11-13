@@ -7,13 +7,14 @@ const ArticleList = ({ articles = [] }) => {
   return (
     <div>
       {articles?.length ? (
-        articles.map((article) => {
-          return (
-            <div onClick={() => router.push(`article/${article.id}`)}>
-              <PreviewCard article={article} />
-            </div>
-          );
-        })
+        articles.map((article) => (
+          <div
+            key={article.id}
+            onClick={() => router.push(`article/${article.id}`)}
+          >
+            <PreviewCard article={article} />
+          </div>
+        ))
       ) : (
         <p>
           Try adding some urls in the extension to have them displayed here!

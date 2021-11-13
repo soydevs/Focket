@@ -7,6 +7,7 @@ import CleanedPage from "../../components/CleanedPage";
 import NotesTab from "../../components/NotesTab";
 import TagsList from "../../components/TagsList";
 import { tempArticles } from "../../tempData";
+import { toast } from "react-toastify";
 
 export const getStaticProps = ({ params }) => {
   const article = tempArticles.find((article) => article.id === params.id);
@@ -39,7 +40,14 @@ const Article = ({ article, content }) => {
   const handleUpdateArticle = (key, val) => {
     const updatedArticle = { ...article, [key]: val };
     console.log(updatedArticle);
-    // axios.put(...)
+    try {
+      // axios.put(...)
+      toast("Successfully updated");
+    } catch (error) {
+      toast(
+        "There seems to be some issues with updation. Please check your network connectivity"
+      );
+    }
   };
 
   return (
