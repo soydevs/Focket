@@ -3,8 +3,7 @@ import Image from "next/image";
 import TagsList from "./TagsList";
 
 const PreviewCard = ({ article }) => {
-  const { url, title, description, imgUrl, addedTime, tags } = article;
-  console.log(imgUrl);
+  const { title, description, imgUrl, addedTime, tags } = article;
   return (
     <div
       style={{

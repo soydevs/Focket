@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import Head from "next/head";
+// const read = require("node-readability"); // todo: make this into an api which can be called
+
+import CleanedPage from "../../components/CleanedPage";
 import NotesTab from "../../components/NotesTab";
 import TagsList from "../../components/TagsList";
 import { tempArticles } from "../../tempData";
@@ -6,6 +10,15 @@ import { tempArticles } from "../../tempData";
 export const getStaticProps = ({ params }) => {
   const article = tempArticles.find((article) => article.id === params.id);
   return { props: { article } };
+  // return new Promise((resolve) => {
+  // read(article.url, (err, { content }, meta) => {
+  //   if (err) {
+  //     resolve({ props: { article } });
+  //   } else {
+  //     resolve({ props: { article, content: content } });
+  //   }
+  // });
+  // });
 };
 
 export const getStaticPaths = () => {
@@ -18,17 +31,24 @@ export const getStaticPaths = () => {
   };
 };
 
-const Article = ({ article }) => {
+const Article = ({ article, content }) => {
   const [notesTabOpen, setNotesTabOpen] = useState(true);
+  const { title, addedTime, tags, url, notes } = article;
   return (
     <div style={{ minHeight: "100vh", padding: 5 }}>
-      <h1>{article.title}</h1>
-      <h3>Added on: {new Date(article.addedTime).toLocaleString()}</h3>
+      <Head>
+        <title>Focket - {title}</title>
+      </Head>
+      <h1>{title}</h1>
+      <p>
+        <b>Added On: </b>
+        {new Date(addedTime).toLocaleString()}
+      </p>
 
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <span>
-          <b>Tags:</b>
-          <TagsList tags={article.tags} />
+          <b>Tags: </b>
+          <TagsList tags={tags} />
         </span>
         <br />
         <button onClick={() => setNotesTabOpen((curr) => !curr)}>
@@ -39,10 +59,12 @@ const Article = ({ article }) => {
         className='container'
         style={{ display: "flex", height: 400, marginTop: 10 }}
       >
-        <iframe style={{ flex: 3 }} src={article.url} frameborder='0'></iframe>
+        <div style={{ flex: 3 }}>
+          <CleanedPage content={content} url={url} />
+        </div>
         {notesTabOpen && (
           <div style={{ flex: 1 }}>
-            <NotesTab notesList={article.notes} />
+            <NotesTab notesList={notes} />
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { IconButton } from "@mui/material";
 
 const Note = ({ note }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -19,17 +20,13 @@ const Note = ({ note }) => {
       {!isEditing ? (
         <div>
           <span>{note.text}</span>
-          <span style={{ marginLeft: 10 }}>
-            <ModeEditIcon
-              style={{ marginRight: 10, cursor: "pointer" }}
-              onClick={() => setIsEditing(true)}
-              fontSize='small'
-            />
-            <DeleteOutlineIcon
-              onClick={handleDelete}
-              fontSize='small'
-              style={{ curor: "pointer" }}
-            />
+          <span style={{ marginLeft: 5 }}>
+            <IconButton onClick={() => setIsEditing(true)}>
+              <ModeEditIcon fontSize='small' />
+            </IconButton>
+            <IconButton onClick={handleDelete}>
+              <DeleteOutlineIcon fontSize='small' />
+            </IconButton>
           </span>
         </div>
       ) : (
