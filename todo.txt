@@ -1,0 +1,5 @@
+- initialize database
+- articles -> notes
+- handle requests for articles and notes
+- integrate
+- chrome extension

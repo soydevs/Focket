@@ -1,3 +1,8 @@
-const { Article } = require("./Article");
+import { Article } from './Article';
+import { Note } from './Note';
 
-module.exports = { Article };
+export {
+    Article,
+    Note
+}
+
