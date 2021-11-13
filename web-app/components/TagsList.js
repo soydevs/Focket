@@ -5,6 +5,7 @@ const TagsList = ({ tags, clickHandler }) => {
     <span className='tag-container' style={{ marginTop: 10 }}>
       {tags.map((tag) => (
         <span
+          key={tag}
           onClick={() => clickHandler && clickHandler(`#${tag}`)}
           style={{
             borderRadius: 25,

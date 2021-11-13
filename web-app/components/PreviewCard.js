@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import styles from "../styles/Home.module.css";
 import TagsList from "./TagsList";
 
 const PreviewCard = ({ article }) => {
@@ -14,7 +15,7 @@ const PreviewCard = ({ article }) => {
         cursor: "pointer",
       }}
     >
-      <Image width='170' height='170' src={imgUrl} style={{ flex: 1 }} />
+      <Image width='170' height='170' src={imgUrl} className={styles.image} />
       <div style={{ flex: 3, marginLeft: 20 }}>
         <h3>{title}</h3>
         <p>{description}</p>
