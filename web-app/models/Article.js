@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const { Schema } = mongoose;
+import mongoose, { Mongoose, Schema } from 'mongoose';
+import { NoteSchema } from './Note';
 
 const ArticleSchema = new Schema(
   {
@@ -17,11 +17,13 @@ const ArticleSchema = new Schema(
       default: [],
     },
     notes: {
+      type: [mongoose.Schema.Types.ObjectId],
       default: [],
     },
   },
   { timestamps: true }
 );
 
-const Article = mongoose.model("Article", ArticleSchema);
-module.exports = { Article };
+const Article = mongoose.models.Article || mongoose.model("Article", ArticleSchema);
+export { Article }
+
