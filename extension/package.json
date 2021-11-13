@@ -1,0 +1,19 @@
+{
+  "name": "focket_extension",
+  "version": "1.0.0",
+  "description": "Extension for storing articles and notes to focket",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soydevs/Focket.git"
+  },
+  "author": "Soydevs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/soydevs/Focket/issues"
+  },
+  "homepage": "https://github.com/soydevs/Focket#readme"
+}

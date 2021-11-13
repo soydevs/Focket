@@ -1,0 +1,36 @@
+{
+    "name": "Focket Extension",
+    "description": "Extension for storing articles and notes to Focket!",
+    "version": "1.0",
+    "manifest_version": 3,
+    "background": {
+        "service_worker":"background.js"
+    },
+    "permissions": ["storage", "activeTab", "scripting", "unlimitedStorage"],
+    "host_permissions":[
+        "<all_urls>"
+    ],
+    "action": {
+    },
+    "content_scripts": [
+        {
+            "run_at": "document_end",
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": ["content_script.js"],
+            "all_frames": false
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": ["popup.html"], 
+            "matches": [ "https://*/*",
+                "http://*/*" ]
+            }
+        ],
+        "icons":{
+            
+        }
+}
+              
