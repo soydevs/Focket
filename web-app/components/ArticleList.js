@@ -1,28 +1,23 @@
 import React from "react";
-import Preview from "preview-url-component";
+// import Preview from "preview-url-component";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import PreviewCard from "./PreviewCard";
 // import { ReactTinyLink } from "react-tiny-link";
 
 const ArticleList = ({ articles = [] }) => {
-  console.log(articles);
+  const router = useRouter();
   return (
     <div>
       {articles?.length ? (
-        articles.map(({ url }) => {
-          console.log(url);
+        articles.map((article) => {
+          const { url, id } = article;
           return (
-            <Preview
-              url={url}
-              loadingText='loading...'
-              notFound='URL Not Found!'
-            />
-            // <ReactTinyLink
-            //   cardSize='small'
-            //   showGraphic={true}
-            //   maxLine={2}
-            //   minLine={1}
-            //   url={url}
-            // />
-            // null
+            <div onClick={() => router.push(`article/${id}`)}>
+              {/* <Link href={`article/${id}`}> */}
+              <PreviewCard article={article} />
+              {/* </Link> */}
+            </div>
           );
         })
       ) : (

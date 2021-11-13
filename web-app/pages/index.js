@@ -21,6 +21,7 @@ export default function Home() {
     setArticles(tempArticles);
   };
 
+  if (typeof window == "undefined") return null;
   return (
     <div className={styles.container}>
       <Head>
