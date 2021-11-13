@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+    color: white;
+}
+#notes > div {
+    height: 50px;
+}
+.expand {
+    height: fit-content !important;
+}
