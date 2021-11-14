@@ -18,7 +18,7 @@ The software consists of two parts: A Focket client (browser-extension for now) 
 The user runs the server in his vps (say heroku for eg) and enters the server-url + port in the client app(which will include native mobile and desktop apps in future). This will pair up the client with the server.
 Afterwards, the user would need to enter a password (which he can set up in the server config file) to successfully log in.
 
-This would enable the user to share any links which he may feel is useful to his projects, research, leisure or simply as a read-later list to the Focket client and have it saved in his server. The app supports creation of collections, which can be considered as projects to which you can add and group articles of your choice with just a single click. Think of this as a bookmarking app on steroids.
+This would enable the user to share any links which he may feel is useful to his projects, research, leisure or simply as a read-later list to the Focket client and have it saved in his server. The app supports creation of collections, which can be considered as projects to which you can add and group articles of your choice with just a single click. Think of this as a bookmarking app on **steroids**.
 User can also take notes, group similar articles using tags, search and filter them etc.
 
 ## Features
@@ -43,14 +43,13 @@ User can also take notes, group similar articles using tags, search and filter t
 
 ## Deployment
 
-- Create a MongoDb Database in Atlas [Reference](https://docs.atlas.mongodb.com/tutorial/create-new-cluster/)
+- Create a MongoDB Database in Atlas [Reference](https://docs.atlas.mongodb.com/tutorial/create-new-cluster/)
 
-One click deployment using Vercel or Netlfiy
+One click deployment using Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsoydevs%2FFocket%2Ftree%2Fmain%2Fweb-app&env=DB_URI,PASSWORD)
-[![Deploy with netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/soydevs/Focket/)
 
-Add the MongoDb uri (received from Atlas) and your secret password as environment variables in Netlify/vercel environment-variables section using the keys `MONGO_URI` and `SECRET_PASS` respectively.
+Add the MongoDB uri (received from Atlas) and your secret password as environment variables in vercel environment-variables section using the keys `MONGO_URI` and `SECRET_PASS` respectively.
 
 ### OR Manual Deploy
 
@@ -64,3 +63,31 @@ Add the MongoDb uri (received from Atlas) and your secret password as environmen
    ```
 3. Fill in your values as specified
 4. Deploy the web-app directory using your preferred way of deploying a nodeJS application.
+
+### Demo/Testing
+
+#### Web-App
+
+For testing our live app, please visit [focket.vercel.app/](focket.vercel.app/)
+The app is logged in by default for easy testing. If you try logging out, you can log in again by entering the dummy password: 1234
+
+For running the web-app locally, clone the repo and enter
+
+```bash
+git clone https://github.com/soydevs/Focket.git
+
+cd Focket/web-app
+
+npm install
+
+npm run dev
+```
+
+#### Extension
+
+- clone the repository
+- Navigate to settings in Chrome
+- Click on `extensions` tab
+- Click on `load unpacked` button
+- Choose the extension [folder](https://github.com/soydevs/Focket/tree/main/extension)
+- Use the extension by navigating to any page containing articles and clicking on the icon.
