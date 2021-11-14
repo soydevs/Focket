@@ -4,7 +4,7 @@ import { Article, Note } from "../../../models";
 import { getDataFromUrl } from "../../../serverUtils";
 
 export default async function handler(req, res) {
-  const { query, method, body } = req;
+  const { query, method } = req;
 
   await dbConnect();
   switch (method) {
@@ -25,8 +25,9 @@ export default async function handler(req, res) {
         await article.save();
         console.log("new article saved");
         res.status(201).json({ success: true, data: article });
-      } catch (error) {
-        res.status(400).json({ success: false, message: error.message });
+      } catch (err) {
+        console.log("Error in saving: " + err);
+        res.status(400).json({ success: false, message: err.message });
       }
       break;
     case "PATCH":
