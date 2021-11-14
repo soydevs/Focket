@@ -11,7 +11,9 @@
         "<all_urls>"
     ],
     "action": {
+       
     },
+   
     "content_scripts": [
         {
             "run_at": "document_end",

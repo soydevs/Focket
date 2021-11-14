@@ -13,7 +13,7 @@ const ArticleSchema = new Schema(
       type: String,
     },
     tags: {
-      required: true,
+      required: false,
       type: [String],
       default: [],
     },

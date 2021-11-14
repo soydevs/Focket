@@ -5,8 +5,18 @@
 <link rel="stylesheet" type="text/css" href="./popup.css">
 </head>
 <body>
-    <h1>Focket</h1>
-    <h3 id="site">Site Title</h3>
+    <h1 id="appname">Focket</h1>
+    <button id="settings">toggle settings</button>
+
+    <section id="settingsarea">
+    <label for="url">url</label>
+    <input type="text" name="serverurl" placeholder="Enter server url" id="url"/>
+    <label for="password">password</label>
+    <input type="password" name="password" placeholder="Enter password" id="password"/>
+    </section>
+
+    <h3>Page:</h3>
+    <p id="site">Site Title</p>
     <h4>Notes</h4>
     <section id="notes">
         <!-- 
@@ -18,11 +28,19 @@
         </div> 
        -->
     </section>
-    <section>
+    <section id="area">
+    <label for="titlearea">Title</label>
+        <div id="titlearea" contenteditable="true">
+        Sample title
+        </div>
+        <hr/>
+    <label for="textarea">Note</label>
         <div id="textarea" contenteditable="true">
         Sample Text
         </div>
         <button id="add">Add</button>
+        <button id="clear">New</button>
+        <button id="save">Save</button>
     </section>
 </body>
 <script src="./popup.js"></script>
