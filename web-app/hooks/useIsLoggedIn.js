@@ -5,12 +5,7 @@ const useIsLoggedIn = (initialVal = false) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(initialVal);
   // to be improved
   useEffect(() => {
-    localStorage
-      .setItem(FOCKET_IS_USER_LOGGED_IN, isUserLoggedIn === true)
-      .then(() => {
-        console.log("yes");
-      });
-    console.log({ val });
+    localStorage.setItem(FOCKET_IS_USER_LOGGED_IN, isUserLoggedIn === true);
   }, [isUserLoggedIn]);
 
   return { isUserLoggedIn, setIsUserLoggedIn };
