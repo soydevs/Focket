@@ -1,30 +1,40 @@
 import { useState } from "react";
 import Head from "next/head";
 import Chips from "react-chips";
-// const read = require("node-readability"); // todo: make this into an api which can be called
 
-import Article from "../../models";
+import dbConnect from "../../lib/connect";
+import { Article } from "../../models";
 import CleanedPage from "../../components/CleanedPage";
 import NotesTab from "../../components/NotesTab";
 import { toast } from "react-toastify";
 
-export const getStaticProps = ({ params }) => {
-  const article = await Article.find({ title: params.id }).lean().exec();
+export const getStaticProps = async ({ params }) => {
+  console.log(params);
+  console.log("ok");
+  await dbConnect();
+  const article = await Article.find({ title: params.id })
+    .lean()
+    .toArray()
+    .exec();
   return { props: { article } };
 };
 
 export const getStaticPaths = async () => {
-  const articles = await Article.find({}).lean().exec();
+  console.log("begin");
+  await dbConnect();
+  console.log("hi");
+  const articles = await Article.find({}).lean().toArray().exec();
   const paths = articles.map((article) => ({
     params: { id: article.title },
   }));
+  console.log(paths);
   return {
     paths,
     fallback: false,
   };
 };
 
-const Article = ({ article, content }) => {
+const ArticlePage = ({ article, content }) => {
   const [notesTabOpen, setNotesTabOpen] = useState(true);
   const { title, createdAt, tags, url, notes } = article;
 
@@ -84,4 +94,4 @@ const Article = ({ article, content }) => {
     </div>
   );
 };
-export default Article;
+export default ArticlePage;

@@ -3,7 +3,8 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import TagsList from "./TagsList";
 
-const fallBackImgUrl = "https://picsum.photos/200";
+const fallBackImgUrl =
+  "https://i.picsum.photos/id/1023/200/200.jpg?hmac=MtNMS39i8o8sE6PiXNwABDxNtK4niBxaZWoX5KY3cyg";
 
 const PreviewCard = ({ article }) => {
   const { title, description, imgUrl, createdAt, tags } = article;
@@ -17,7 +18,7 @@ const PreviewCard = ({ article }) => {
         cursor: "pointer",
       }}
     >
-      <Image
+      <img
         width="170"
         height="170"
         src={imgUrl || fallBackImgUrl}

@@ -4,7 +4,7 @@ import { Article, Note } from "../../../models";
 import { getDataFromUrl } from "../../../serverUtils";
 
 export default async function handler(req, res) {
-  const { query, method } = req;
+  const { query, method, body } = req;
 
   await dbConnect();
   switch (method) {
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        const parsedArticle = await getDataFromUrl(req.body);
+        const parsedArticle = await getDataFromUrl(body);
         const article = new Article(parsedArticle);
         await article.save();
         console.log("new article saved");

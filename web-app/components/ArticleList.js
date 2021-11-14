@@ -9,8 +9,8 @@ const ArticleList = ({ articles = [] }) => {
       {articles?.length ? (
         articles.map((article) => (
           <div
-            key={article.id}
-            onClick={() => router.push(`article/${article.id}`)}
+            key={article.url}
+            onClick={() => router.push(`article/${article.title}`)}
           >
             <PreviewCard article={article} />
           </div>

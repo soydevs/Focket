@@ -2,7 +2,7 @@ const read = require("node-readability");
 const { getMetadata } = require("page-metadata-parser");
 const domino = require("domino");
 
-export const getDataFromUrl = (url = "") => {
+export const getDataFromUrl = ({ url = "", tags = [] }) => {
   return new Promise((resolve) => {
     read(url, async (err, article) => {
       let html = "";
@@ -26,7 +26,7 @@ export const getDataFromUrl = (url = "") => {
         notes: [],
         description,
         content,
-        tags: keywords?.length ? keywords : [],
+        tags: tags ? tags : keywords?.length ? keywords : [],
         imgUrl: image,
       });
     });
