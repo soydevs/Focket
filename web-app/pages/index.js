@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "../components/Main";
 import styles from "../styles/Home.module.css";
@@ -15,14 +15,18 @@ export default function Home() {
 
   useEffect(() => {
     const val = localStorage.getItem(FOCKET_IS_USER_LOGGED_IN);
+    console.log(val);
     if (!val) {
       router.replace("/login");
     }
-  }, []);
+  });
 
   const handleLogout = () => {
     localStorage.removeItem(FOCKET_IS_USER_LOGGED_IN);
-    router.replace("/login");
+    toast("Logging you out");
+    setTimeout(() => {
+      router.replace("/login");
+    }, 2500);
   };
 
   return (

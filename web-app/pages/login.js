@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import { FOCKET_IS_USER_LOGGED_IN } from "../constants";
 import useIsLoggedIn from "../hooks/useIsLoggedIn";
 
 const login = () => {
@@ -18,6 +19,11 @@ const login = () => {
         console.log("success");
         setMsg("Successfully Logged in");
         setIsUserLoggedIn(true);
+
+        localStorage.setItem(FOCKET_IS_USER_LOGGED_IN, true);
+        setTimeout(() => {
+          router.replace("/");
+        }, 700);
       } else {
         console.log("wrong pass");
         setMsg("Invalid Password");
@@ -30,10 +36,17 @@ const login = () => {
     }
   };
 
-  if (isUserLoggedIn) {
-    router.push("/");
-  }
+  // if (isUserLoggedIn) {
+  //   router.push("/");
+  // }
+  // useEffect(() => {
+  //   console.log(val);
+  // });
 
+  // const val = localStorage.getItem(FOCKET_IS_USER_LOGGED_IN);
+  // if (val) {
+  //   router.replace("/");
+  // }
   return (
     <div
       style={{
