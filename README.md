@@ -40,3 +40,6 @@ User can also take notes, group similar articles using tags, search and filter t
 - Feature to link together added articles using wiki-links and generate a graph of your knowledge base
 - Feature to set a review time to prompt you to review a certain articles after a set period of time.
 - Search articles using natural language based query using [Haystack](https://github.com/deepset-ai/haystack) or some other alternative. [Reference](https://forum.fossunited.org/t/hackathon-ideas/159/49)
+
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsoydevs%2FFocket%2Ftree%2Fmain%2Fweb-app&env=DB_URI,PASSWORD)
