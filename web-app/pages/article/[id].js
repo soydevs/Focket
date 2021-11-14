@@ -12,7 +12,15 @@ export const getStaticProps = async ({ params }) => {
   await dbConnect();
   const [article] = await Article.find({ title: params.id }).lean().exec();
   console.log(article);
-  return { props: { article: { ...article, _id: article._id.toHexString() } } };
+  return {
+    props: {
+      article: {
+        ...article,
+        _id: article._id.toHexString(),
+        createdAt: new Date(article.createdAt).getTime(),
+      },
+    },
+  };
 };
 
 export const getStaticPaths = async () => {

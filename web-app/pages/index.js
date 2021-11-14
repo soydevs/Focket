@@ -7,6 +7,7 @@ import Main from "../components/Main";
 import styles from "../styles/Home.module.css";
 import useIsLoggedIn from "../hooks/useIsLoggedIn";
 import { Button } from "@mui/material";
+import { FOCKET_IS_USER_LOGGED_IN } from "../constants";
 
 export default function Home() {
   const router = useRouter();
@@ -14,14 +15,15 @@ export default function Home() {
   console.log({ isUserLoggedIn });
 
   useEffect(() => {
-    if (!isUserLoggedIn) {
+    const val = localStorage.getItem(FOCKET_IS_USER_LOGGED_IN);
+    if (!val) {
       router.replace("/login");
     }
-  }, [isUserLoggedIn]);
-  console.log({ isUserLoggedIn });
+  }, []);
 
   const handleLogout = () => {
-    setIsUserLoggedIn(false);
+    localStorage.removeItem(FOCKET_IS_USER_LOGGED_IN);
+    router.replace("/login");
   };
 
   return (
