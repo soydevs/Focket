@@ -19,10 +19,10 @@ export const handleSort = (key = "", articles = []) => {
       params = "title";
       break;
     case "new":
-      params = "addedTime";
+      params = "createdAt";
       break;
     case "old":
-      params = "addedTime";
+      params = "createdAt";
       asc = false;
       break;
   }

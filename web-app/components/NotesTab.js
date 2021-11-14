@@ -9,7 +9,7 @@ const NotesTab = ({ notesList = [], handleUpdateArticle }) => {
   const handleAddNote = () => {
     setNotes((notes) => [
       ...notes,
-      { id: Math.random(), text: "", addedTime: new Date().getTime() },
+      { id: Math.random(), text: "", createdAt: new Date().getTime() },
     ]);
   };
 
@@ -45,7 +45,7 @@ const NotesTab = ({ notesList = [], handleUpdateArticle }) => {
       <div style={{ maxHeight: "60vh", overflow: "auto" }}>
         <ol>
           {notes.map((note) => (
-            <li style={{ marginBottom: 5 }} key={note.addedTime}>
+            <li style={{ marginBottom: 5 }} key={note.createdAt}>
               <Note
                 note={note}
                 handleDelete={handleDelete}

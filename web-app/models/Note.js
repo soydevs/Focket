@@ -1,23 +1,26 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from "mongoose";
 
-const NoteSchema = new Schema({
-    title:{
-        type: String
+const NoteSchema = new Schema(
+  {
+    title: {
+      type: String,
     },
-    uid: {
-        type:String
+    id: {
+      type: String,
     },
-    content: {
-        type: String,
-        required: true
+    text: {
+      type: String,
+      required: true,
     },
     color: {
-        type:String,
-        required: true
+      type: String,
+      required: true,
     },
-}, {
-        timestamps: true
-});
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const Note = mongoose.models.Note || mongoose.model("Note", NoteSchema);
 export { Note, NoteSchema };

@@ -40,3 +40,27 @@ User can also take notes, group similar articles using tags, search and filter t
 - Feature to link together added articles using wiki-links and generate a graph of your knowledge base
 - Feature to set a review time to prompt you to review a certain articles after a set period of time.
 - Search articles using natural language based query using [Haystack](https://github.com/deepset-ai/haystack) or some other alternative. [Reference](https://forum.fossunited.org/t/hackathon-ideas/159/49)
+
+## Deployment
+
+- Create a MongoDb Database in Atlas [Reference](https://docs.atlas.mongodb.com/tutorial/create-new-cluster/)
+
+One click deployment using Vercel or Netlfiy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fsoydevs%2FFocket%2Ftree%2Fmain%2Fweb-app&env=DB_URI,PASSWORD)
+[![Deploy with netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/soydevs/Focket/)
+
+Add the MongoDb uri (received from Atlas) and your secret password as environment variables in Netlify/vercel environment-variables section using the keys `MONGO_URI` and `SECRET_PASS` respectively.
+
+### OR Manual Deploy
+
+1. Clone this repo
+   ```bash
+   git clone https://github.com/soydevs/Focket.git
+   ```
+2. Create .env file in web-app directory similar to .env.local file
+   ```bash
+   cp .env.local web-app/.env
+   ```
+3. Fill in your values as specified
+4. Deploy the web-app directory using your preferred way of deploying a nodeJS application.
