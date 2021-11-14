@@ -14,7 +14,6 @@ const login = () => {
 
     try {
       const res = await (await fetch(`/api/verify?pass=${pass}`)).json();
-      console.log(res);
       if (res.success) {
         console.log("success");
         setMsg("Successfully Logged in");

@@ -12,7 +12,6 @@ import { FOCKET_IS_USER_LOGGED_IN } from "../constants";
 export default function Home() {
   const router = useRouter();
   const { isUserLoggedIn, setIsUserLoggedIn } = useIsLoggedIn();
-  console.log({ isUserLoggedIn });
 
   useEffect(() => {
     const val = localStorage.getItem(FOCKET_IS_USER_LOGGED_IN);
