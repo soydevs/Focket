@@ -9,11 +9,10 @@ import NotesTab from "../../components/NotesTab";
 import { toast } from "react-toastify";
 
 export const getStaticProps = async ({ params }) => {
-  console.log(params);
-  console.log("ok");
   await dbConnect();
-  const article = await Article.find({ title: params.id }).lean().exec();
-  return { props: { article } };
+  const [article] = await Article.find({ title: params.id }).lean().exec();
+  console.log(article);
+  return { props: { article: { ...article, _id: article._id.toHexString() } } };
 };
 
 export const getStaticPaths = async () => {
