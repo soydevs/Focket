@@ -3,19 +3,23 @@ const notesBlock = document.getElementById('notes');
 const addBtn = document.getElementById('add');
 const textArea = document.getElementById('textarea');
 
-// chrome.runtime.onMessage.addListener(async (msg, sender, response) => {
-//     // First, validate the message's structure.
-//     console.log("got")
-//     if((msg.from === 'content') && (msg.subject === 'close')) {
-//         console.log("hehe")
-//         window.close()
-//         return;
-//     }
-//     if((msg.from === 'content') && (msg.subject === 'open')) {
-//         console.log("hii")
-//         return;
-//     }
-// })
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    var url = tabs[0].url;
+    console.log(url);
+    siteHeader.innerHTML = url
+});
+
+chrome.runtime.onMessage.addListener(function(msg, sender, response) {
+    // First, validate the message's structure.
+    if((msg.from === 'content') && (msg.subject === 'close')) {
+        window.close()
+        return;
+    }
+    if((msg.from === 'content') && (msg.subject === 'open')) {
+        
+        return;
+    }
+})
 const notes = [1,2,3,4]
 const colors = ['#000000', '#36454F', '#023020', '#301934']
 

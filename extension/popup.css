@@ -1,6 +1,7 @@
 body {
     /*background-color: rgb(10,250,0);*/
-    width: 500px;
+    width: 480px;
+    overflow-x: hidden;
 }
 h4 {
     line-height: 32px;
