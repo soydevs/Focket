@@ -6,7 +6,6 @@ import dbConnect from "../../lib/connect";
 import { Article } from "../../models";
 import CleanedPage from "../../components/CleanedPage";
 import NotesTab from "../../components/NotesTab";
-import { toast, ToastContainer } from "react-toastify";
 
 export const getStaticProps = async ({ params }) => {
   await dbConnect();
@@ -48,8 +47,6 @@ const ArticlePage = ({ passedArticle }) => {
 
   const handleUpdateArticle = async (key, val) => {
     const updatedArticle = { ...article, [key]: val };
-    let { content, ...temp } = updatedArticle;
-    console.log(content);
     try {
       const res = await (
         await fetch("http://localhost:3000/api/articles", {
@@ -62,15 +59,14 @@ const ArticlePage = ({ passedArticle }) => {
       ).json();
       console.log(res);
       if (res.success) {
-        toast("Successfully updated");
         const savedArticle = res.data;
         setArticle(savedArticle);
       } else throw "Server error";
     } catch (err) {
       console.log("error: " + err);
-      toast(
-        "There seems to be some issues with updation. Please check your network connectivity"
-      );
+      // toast(
+      //   "There seems to be some issues with updation. Please check your network connectivity"
+      // );
     }
   };
 
@@ -79,7 +75,6 @@ const ArticlePage = ({ passedArticle }) => {
       <Head>
         <title>Focket - {title}</title>
       </Head>
-      <ToastContainer />
       <h1>{title}</h1>
       <div style={{ display: "flex", alignItems: "center" }}>
         <b style={{ marginRight: 10 }}>Tags: </b>
