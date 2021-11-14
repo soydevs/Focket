@@ -13,6 +13,7 @@ export default async function handler(req, res) {
         const articles = await Article.find({ query: query || {} })
           .lean()
           .exec();
+          console.log(articles)
         res.status(200).json({ success: true, data: articles });
       } catch (error) {
         res.status(400).json({ success: false, msg: error.message });
