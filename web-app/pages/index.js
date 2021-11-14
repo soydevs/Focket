@@ -1,19 +1,34 @@
+import { useEffect } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Main from "../components/Main";
 import styles from "../styles/Home.module.css";
 import useIsLoggedIn from "../hooks/useIsLoggedIn";
+import { Button } from "@mui/material";
+import { FOCKET_IS_USER_LOGGED_IN } from "../constants";
 
 export default function Home() {
-  const { isUserLoggedIn } = useIsLoggedIn();
   const router = useRouter();
-  console.log({ isUserLoggedIn });
+  const { isUserLoggedIn, setIsUserLoggedIn } = useIsLoggedIn();
 
-  if (!isUserLoggedIn) {
-    router.push("/login");
-  }
+  useEffect(() => {
+    const val = localStorage.getItem(FOCKET_IS_USER_LOGGED_IN);
+    console.log(val);
+    if (!val) {
+      router.replace("/login");
+    }
+  });
+
+  const handleLogout = () => {
+    localStorage.removeItem(FOCKET_IS_USER_LOGGED_IN);
+    toast("Logging you out");
+    setTimeout(() => {
+      router.replace("/login");
+    }, 2500);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -32,6 +47,12 @@ export default function Home() {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </Head>
+      <Button
+        onClick={handleLogout}
+        style={{ position: "absolute", top: 0, right: 0 }}
+      >
+        LogOut
+      </Button>
       <Main />
       <ToastContainer />
       <footer>

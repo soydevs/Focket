@@ -64,7 +64,6 @@ const Main = () => {
   };
 
   const handleAddNewArticle = async (article) => {
-    console.log(article);
     toast("Parsing data and saving article");
     try {
       const res = await fetch("api/articles", {

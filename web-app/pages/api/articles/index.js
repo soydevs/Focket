@@ -13,7 +13,6 @@ console.log(req.body)
         const articles = await Article.find({ query: query || {} })
           .lean()
           .exec();
-          console.log(articles)
         res.status(200).json({ success: true, data: articles });
       } catch (error) {
         res.status(400).json({ success: false, msg: error.message });
@@ -33,11 +32,15 @@ console.log(req.body)
       break;
     case "PATCH":
       try {
-        const article = await Article.findOneAndUpdate({ url }, req.body)
+        console.log(body.url);
+        console.log("ok");
+        const article = await Article.findOneAndUpdate({ url: body.url }, body)
           .lean()
           .exec();
+        console.log("Article udpated");
         res.status(201).json({ success: true, data: article });
-      } catch (error) {
+      } catch (err) {
+        console.log("Error in updating: " + err);
         res.status(400).json({ success: false, message: error.message });
       }
       break;
