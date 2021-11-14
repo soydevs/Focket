@@ -38,6 +38,7 @@ export const getStaticPaths = async () => {
 const ArticlePage = ({ passedArticle }) => {
   const [article, setArticle] = useState(passedArticle);
   const [notesTabOpen, setNotesTabOpen] = useState(true);
+
   useEffect(() => {
     setArticle(passedArticle);
   }, [passedArticle]);

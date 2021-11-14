@@ -39,7 +39,7 @@ export default async function handler(req, res) {
           .exec();
         console.log("Article udpated");
         res.status(201).json({ success: true, data: article });
-      } catch (error) {
+      } catch (err) {
         console.log("Error in updating: " + err);
         res.status(400).json({ success: false, message: error.message });
       }
