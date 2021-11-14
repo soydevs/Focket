@@ -31,14 +31,13 @@ async function dbConnect() {
       useUnifiedTopology: true,
     };
 
-    cached.promise = mongoose
-      .connect(MONGO_URI, opts)
-      .then((mongoose) => {
-        return mongoose;
-      })
-      .catch((err) => console.log("Error in connecting to db: " + err));
+    try {
+      cached.promise = mongoose.connect(MONGO_URI, opts);
+      cached.conn = await cached.promise;
+    } catch (error) {
+      console.log("Error in connecting to db: " + error);
+    }
   }
-  cached.conn = await cached.promise;
   return cached.conn;
 }
 

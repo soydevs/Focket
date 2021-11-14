@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import ArticleList from "../components/ArticleList";
 import TagsList from "../components/TagsList";
 import SearchBar from "../components/SearchBar";
-// import { tempArticles } from "../tempData";
 import { getUniqueTagsFromArticles, handleSort } from "../utils/utils";
 import SortMenu from "./SortMenu";
-import { IconButton } from "@mui/material";
+import { CircularProgress, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import AddArticleUrl from "./AddArticleUrl";
 import { toast } from "react-toastify";
@@ -64,12 +63,16 @@ const Main = () => {
     setSearchQuery(tagName);
   };
 
-  const handleAddNewArticle = async (url = "") => {
+  const handleAddNewArticle = async (article) => {
+    console.log(article);
     toast("Parsing data and saving article");
     try {
-      const res = await fetch("api/articles/", {
+      const res = await fetch("api/articles", {
         method: "POST",
-        body: url,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(article),
       });
       if (res.status === 201) {
         toast("Successfully added article.");
@@ -84,6 +87,11 @@ const Main = () => {
       );
     }
   };
+
+  const allTags = useMemo(
+    () => getUniqueTagsFromArticles(allArticles),
+    [allArticles]
+  );
 
   return (
     <div
@@ -101,6 +109,7 @@ const Main = () => {
         <AddArticleUrl
           onCancel={() => setAddUrlFieldVisible(false)}
           onAdd={handleAddNewArticle}
+          allTags={allTags}
         />
       ) : (
         <div style={{ display: "flex", alignItems: "center" }}>
@@ -111,11 +120,12 @@ const Main = () => {
           </IconButton>
         </div>
       )}
-      <TagsList
-        tags={getUniqueTagsFromArticles(allArticles)}
-        clickHandler={handleTagClick}
-      />
-      <ArticleList articles={handleSort(sortKey, articles)} />
+      <TagsList tags={allTags} clickHandler={handleTagClick} />
+      {isLoading ? (
+        <CircularProgress />
+      ) : (
+        <ArticleList articles={handleSort(sortKey, articles)} />
+      )}
     </div>
   );
 };
