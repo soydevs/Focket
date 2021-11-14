@@ -1,35 +1,84 @@
 body {
-    /*background-color: rgb(10,250,0);*/
     width: 480px;
     overflow-x: hidden;
+    background-color: beige;
+    position: relative;
 }
 h4 {
     line-height: 32px;
     margin-bottom: 1px;
     margin-top: 30px;
 }
+body > h4 {
+    font-size: large;
+    font-weight: 800;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#appname {
+    letter-spacing: 0.1cm;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+#site {
+    font-style: italic;
+    width: 80%;
+}
 #notes {
     max-height: 280px;
     overflow-y: scroll;
-    background-color: beige;
 }
 #notes > div {
     margin-top: 40px;
     padding-left: 5px;
     padding-bottom: 13px;
 }
+#notes > div:nth-of-type(1) {
+    margin-top: -17px;
+}
 #notes > div > p {
-    height: 90px;
+    height: 50px;
     overflow-y: hidden;
 }
 .expand {
     height: fit-content !important;
 }
-#textarea {
-    height: 150px;
-    margin-top: 30px;
-    margin-bottom: 8px;
-    background-color: greenyellow;
+#area {
+    background-color: rgb(0,230,0);
+    color: white;
+    padding-left: 5px;
+    padding-top: 8px;
+    margin-top: 10px;
+}
+#titlearea {
+    margin-top: 5px;
     padding-left: 10px;
     padding-top: 10px;
+    outline: none;
+}
+#textarea {
+    height: 80px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    padding-top: 10px;
+    outline: none;
+}
+label {
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;   
+}
+#settings {
+    text-align: right;
+    position: absolute;
+    right: 20px;
+}
+#settingsarea {
+    position: fixed;
+    top: 110px;
+    background-color: white;
+    height: 100px;
+    width: 480px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
 }
