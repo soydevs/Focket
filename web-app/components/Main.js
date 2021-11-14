@@ -77,6 +77,7 @@ const Main = () => {
         toast("Successfully added article.");
         const savedArticle = (await res.json()).data;
         console.log(savedArticle);
+        setAddUrlFieldVisible(false)
         setData();
       } else throw "Server error";
     } catch (err) {
