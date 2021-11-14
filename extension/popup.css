@@ -82,3 +82,7 @@ label {
     flex-direction: column;
     justify-content: center;
 }
+#authorize {
+    width: 50%;
+    align-self: center;
+}

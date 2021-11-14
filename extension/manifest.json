@@ -32,7 +32,9 @@
             }
         ],
         "icons":{
-            
+            "16":"./assets/purple/Group 19.png",
+            "48":"./assets/purple/Group 20.png",
+            "128":"./assets/purple/Group 21.png"
         }
 }
               

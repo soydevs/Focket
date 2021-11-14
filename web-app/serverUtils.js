@@ -5,10 +5,17 @@ const domino = require("domino");
 export const getDataFromUrl = ({ url = "", tags = [] }) => {
   return new Promise((resolve) => {
     read(url, async (err, article) => {
+      try {
       let html = "";
       let content = "";
+      let response;
       if (err) {
-        const response = await fetch(url);
+        try {
+          console.log(url)
+        response = await fetch(url);
+        } catch(e) {
+          console.log("eeeehh:"+e);
+        }
         html = await response.text();
       } else {
         html = article.html;
@@ -29,6 +36,9 @@ export const getDataFromUrl = ({ url = "", tags = [] }) => {
         tags: tags ? tags : keywords?.length ? keywords : [],
         imgUrl: image,
       });
+    } catch(e) {
+      console.log("errrrr:"+e)
+    }
     });
   });
 };
