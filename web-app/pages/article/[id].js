@@ -12,10 +12,7 @@ export const getStaticProps = async ({ params }) => {
   console.log(params);
   console.log("ok");
   await dbConnect();
-  const article = await Article.find({ title: params.id })
-    .lean()
-    .toArray()
-    .exec();
+  const article = await Article.find({ title: params.id }).lean().exec();
   return { props: { article } };
 };
 
@@ -23,7 +20,7 @@ export const getStaticPaths = async () => {
   console.log("begin");
   await dbConnect();
   console.log("hi");
-  const articles = await Article.find({}).lean().toArray().exec();
+  const articles = await Article.find({}).lean().exec();
   const paths = articles.map((article) => ({
     params: { id: article.title },
   }));
