@@ -23,7 +23,6 @@ const SortMenu = ({ setSortKey }) => {
         aria-haspopup='true'
         aria-expanded={open ? "true" : undefined}
         onClick={(e) => setAnchorEl(e.currentTarget)}
-        style={{ position: "relative", bottom: 7 }}
       >
         <SortIcon />
       </IconButton>
